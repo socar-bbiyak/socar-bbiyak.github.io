@@ -2,7 +2,7 @@
 layout: post
 title:  "스타트업에 다니던 데이터엔지니어가 쏘카에 와서 느낀점과 온보딩 과정에 대한 회고"
 subtitle: 입사 지원부터 팀 온보딩, 실무 투입까지
-date: 2025-01-24 17:00:00 +0900
+date: 2025-01-16 17:00:00 +0900
 category: data
 background : "/assets/images/home-bg-main.png"
 author: bennett
