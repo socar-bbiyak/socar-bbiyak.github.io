@@ -122,12 +122,10 @@ tags:
 
 
 ### 3.1 대고객 운전 점수 파이프라인 구축
-<div style="display: flex; justify-content: center;">
-    <img src="/img/2025-01-16-dataengineer-onboarding/image6.png" alt="driving_score_arch" style="width: 80%; height: auto;">
-    
-</div>
-<p style='text-align: center; color: #646f7c;'>운전 점수 데이터 파이프라인</p>
-
+<figure >
+  <img src="/img/2025-01-16-dataengineer-onboarding/image6.png" alt="driving_score_arch" style="width: 80%; height: auto;">
+  <p style='text-align: center; color: #646f7c;'>운전 점수 데이터 파이프라인</p>
+</figure>
 
  첫 번째로 참여한 프로젝트는 운전 점수 프로젝트였습니다. 해당 프로젝트는 회원의 기존 운행 기록을 통계화해, 이를 바탕으로 운전 점수를 계산하고 회원에게 제공하는 서비스입니다. 이 프로젝트는 단순히 데이터를 처리하는 단계를 넘어, **산출된 결과를 서비스로 연결하는 작업**이 주된 목적이었습니다. 데이터 엔지니어로서 처음으로 분석 결과를 서비스까지 내보내는 작업이었기 때문에 기대가 되었고, 동시에 책임감도 느꼈습니다.
 
