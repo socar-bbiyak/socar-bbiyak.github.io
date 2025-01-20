@@ -122,10 +122,8 @@ tags:
 
 
 ### 대고객 운전 점수 파이프라인 구축
-<div style="display: flex; justify-content: space-between;">
-  <img src="/img/2025-01-16-dataengineer-onboarding/driving_score.jpg" alt="Image 1" style="width: 33%; height: auto; margin-right: 10px;">
-  <img src="/img/2025-01-16-dataengineer-onboarding/image6.png" alt="Image 2" style="width: 66%; height: auto;">
-</div>
+![image6.png](/img/2025-01-16-dataengineer-onboarding/image6.png)
+_<운전 점수 데이터 파이프라인>_
 
  첫 번째로 참여한 프로젝트는 운전 점수 프로젝트였습니다. 해당 프로젝트는 회원의 기존 운행 기록을 통계화해, 이를 바탕으로 운전 점수를 계산하고 회원에게 제공하는 서비스입니다. 이 프로젝트는 단순히 데이터를 처리하는 단계를 넘어, **산출된 결과를 서비스로 연결하는 작업**이 주된 목적이었습니다. 데이터 엔지니어로서 처음으로 분석 결과를 서비스까지 내보내는 작업이었기 때문에 기대가 되었고, 동시에 책임감도 느꼈습니다.
 
@@ -140,6 +138,11 @@ tags:
 그리고 데이터 사이언티스트와는 산출된 점수가 통계적으로 적절한지 검토하며, 기술적 구현이 서비스 품질에 미치는 영향을 함께 고민했습니다. 그리고 이러한 정책과 품질에 대한 내용들을 Produce하는 단계에서 코드로 구현하여 검증할 수 있도록 작업했습니다. 
 
 이번 프로젝트를 통해 제가 작업한 데이터가 서비스의 한 부분으로 사용자에게 직접 전달된다는 점에서 큰 책임감을 느끼는 동시에 뿌듯함도 컸습니다. 데이터를 정확하고 신뢰성 있게 처리하기 위해 정책을 정의하고 이를 코드로 구현하며 정합성을 확보해 나가는 과정은 쉽지 않았지만, 다양한 팀과 협력하며 문제를 해결해 나가면서 많은 것을 배울 수 있었습니다. 이 경험은 데이터 엔지니어로서 한 단계 성장할 수 있는 소중한 기회가 되었던 것 같습니다.
+
+그리고 25년 1월 중순에 제가 참여했던 프로젝트인 운전점수가 서비스로 배포되었습니다.
+<div style="display: flex; justify-content: space-between;">
+    <img src="/img/2025-01-16-dataengineer-onboarding/driving_score.jpg" alt="driving_score" style="width: 50%; height: auto;">
+</div>
 
 ### 서버 로그 적재 방식 개선
 
