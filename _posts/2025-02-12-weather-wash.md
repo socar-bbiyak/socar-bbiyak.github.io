@@ -2,7 +2,7 @@
 layout: post
 title:  "날씨 세차 임시 제목"
 subtitle: 날씨 세차 임시 서브 타이틀
-date: 2025-02-12 17:00:00 +0900
+date: 2025-02-12 00:00:00 +0900
 category: data
 background : "/img/2025-01-16-dataengineer-onboarding/image0.jpg"
 author: hatnim
