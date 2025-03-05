@@ -78,9 +78,12 @@ tags:
 4. 최종적으로 BigQuery 테이블 형태로 데이터 구조화
 
 아래는 기존 파이프라인 구조입니다.
-
-![기존_파이프라인.svg](/img/2025-02-26-log-pipeline-revamp/기존_파이프라인.svg)
-
+<br>
+<br>
+<br>
+![기존_파이프라인.svg](/img/2025-02-26-log-pipeline-revamp/기존_파이프라인.svg){: style="transform: scale(1.2); transform-origin: center; display: block; margin: 0 auto;" }
+<br>
+<br>
 위 요구사항에 따라 구축한 기존 로그 수집 파이프라인의 주요 흐름은 다음과 같습니다.
 
 1. 로그 생성 및 KDS로 로그 데이터를 전송합니다.
@@ -93,12 +96,11 @@ tags:
 
 이러한 파이프라인 구조는 안정적으로 운영되어 왔으나, **시간이 지남에 따라 여러 가지 한계점과 문제들**이 드러나기 시작했습니다. 아래에서 이러한 문제점들을 자세히 살펴보겠습니다.
 
-## 2-3. 로그 문제점
+## 2-3. 기존 로그 파이프라인 문제점
 
 ### **분류 작업의 비효율성**
 <br>
-![분류_작업의_비효율성.svg](/img/2025-02-26-log-pipeline-revamp/분류_작업의_비효율성.png){: style="transform: scale(1.3); transform-origin: center; display: block; margin: 0 auto;" }
-<br>
+![분류 작업의 비효율성](/img/2025-02-26-log-pipeline-revamp/분류_작업의_비효율성.png){: style="transform: scale(1.23); transform-origin: center; display: block; margin: 0 auto;" }
 <br>
 
 서버 로그는 하나의 파일에 다양한 유형의 데이터를 포함하고 있었고, 이를 적재하기 위해 반드시 분류 작업을 거쳐야 했습니다. S3에 적재된 분류되지 않은 파일을 분류기를 통해 유형별로 분류한 후 GCS에 적재하는 과정에서 많은 시간이 소요되었습니다.
@@ -109,7 +111,7 @@ tags:
 
 ### **데이터 신선도 부족**
 <br>
-![데이터_신선도의_부족.svg](/img/2025-02-26-log-pipeline-revamp/데이터_신선도의_부족.png){: style="transform: scale(1.3); transform-origin: center; display: block; margin: 0 auto;" }
+![데이터_신선도의_부족.svg](/img/2025-02-26-log-pipeline-revamp/데이터_신선도의_부족.png){: style="transform: scale(1.15); transform-origin: center; display: block; margin: 0 auto;" }
 <br>
 <br>
 
@@ -168,7 +170,7 @@ Kafka Consumer가 수집된 데이터를 실시간으로 처리하고 GCS에 즉
 
 ## 3-3. 스키마 통합 관리
 
-데이터 컨트랙트를 도입하여 파이프라인 전반의 스키마 변경 관리를 체계화했습니다. Kafka Schema Registry를 활용해 검증된 스키마만 데이터 생산과 소비 과정에서 사용되도록 함으로써 데이터 품질과 안정성을 확보하고자 하였습니다. 또한, 스키마를 중앙 집중적으로 관리하고 모든 스키마 변경 시 필수적으로 리뷰 프로세스를 거치도록 하여 변경으로 인한 잠재적 문제를 사전에 방지할 수 있는 구조를 구상하고자 하였습니다.
+데이터 컨트랙트를 도입하여 파이프라인 전반의 스키마 변경 관리를 체계화하고자 하였습니다. Kafka Schema Registry를 활용해 검증된 스키마만 데이터 생산과 소비 과정에서 사용되도록 함으로써 데이터 품질과 안정성을 확보하고자 하였습니다. 또한, 스키마를 중앙 집중적으로 관리하고 모든 스키마 변경 시 필수적으로 리뷰 프로세스를 거치도록 하여 변경으로 인한 잠재적 문제를 사전에 방지할 수 있는 구조를 구상하고자 하였습니다.
 
 ![스키마_통합관리.svg](/img/2025-02-26-log-pipeline-revamp/스키마_통합관리.svg)
 
@@ -220,7 +222,7 @@ Kafka Consumer가 수집된 데이터를 실시간으로 처리하고 GCS에 즉
 
 ### **Protobuf**
 
-`Protobuf`는 Google에서 개발한 데이터 직렬화 포맷으로, **구조화된 데이터의 효율적이고 빠른 처리**를 지원합니다. JSON이나 XML보다 데이터 크기가 작고 처리 속도가 빨라, 서비스 간 데이터 교환에 적합합니다. 쏘카 서비스엔지니어링본부(데이터 생산자에 해당)에서 메인으로 사용하는 스키마 포맷으로 데이터엔지니어링팀(데이터 소비자에 해당) 에서도 같은 포맷을 사용하여 뒷부분의 서비스에 녹여내려고 하고 있습니다.
+`Protobuf`는 Google에서 개발한 데이터 직렬화 포맷으로, **구조화된 데이터의 효율적이고 빠른 처리**를 지원합니다. JSON이나 XML보다 데이터 크기가 작고 처리 속도가 빨라, 서비스 간 데이터 교환에 적합합니다. 데이터 생산 및 소비 과정에서 주요 스키마 포맷으로 활용되며, 파이프라인 전반에서 일관된 데이터 처리를 가능하게 합니다.
 
 ### Buf
 
@@ -264,11 +266,11 @@ Kafka는 분산 스트리밍 플랫폼으로, 실시간 데이터를 확장성 �
 
 ### BigQuery 스키마 생성 (1)
 
-Buf 에서 제공하는 플러그인(bq-schema-gen)을 활용하여 BigQuery 테이블 스키마를 손쉽게 생성할 수 있습니다. BigQuery는 업데이트된 스키마를 기반으로 기존 테이블 스키마를 수정(Alter Column)합니다. 여기서 업데이트된 BigQuery 스키마가 기존 BigQuery 스키마와 호환 되지 않는다면, 다시 (0)으로 돌아가 스키마 업데이트에 대해 다시 논의합니다.
+Buf 에서 제공하는 [플러그인](https://buf.build/googlecloudplatform/bq-schema?version=v2.0.1) (`googlecloudplatform/bq-schema`)을 활용하여 BigQuery 테이블 스키마를 손쉽게 생성할 수 있습니다. BigQuery는 업데이트된 스키마를 기반으로 기존 테이블 스키마를 수정(Alter Column)합니다. 여기서 업데이트된 BigQuery 스키마가 기존 BigQuery 스키마와 호환 되지 않는다면, 다시 (0)으로 돌아가 스키마 업데이트에 대해 다시 논의합니다.
 
 ### 파이썬 클래스 생성 및 배포 (2)
 
-Buf 에서 제공하는 파이썬 클래스 생성 플러그인(protocolbuffers/python)을 사용하여 스키마 변경 시 최신 파이썬 클래스를 생성합니다. 이후 새로운 버전의 파이썬 클래스를 포함한 Consumer Pod을 재배포합니다.
+Buf 에서 제공하는 파이썬 클래스 생성 [플러그인](https://buf.build/protocolbuffers/python?version=v29.3) (`protocolbuffers/python`)을 사용하여 스키마 변경 시 최신 파이썬 클래스를 생성합니다. 이후 새로운 버전의 파이썬 클래스를 포함한 Consumer Pod을 재배포합니다.
 
 ### 자바 클래스 생성 및 배포 (3)
 
@@ -337,7 +339,7 @@ Kafka-connect 를 이용한 단순적재는 오픈소스로 나온 Sink Connecto
 
 ```protobuf
 syntax = "proto3";
-import CreateSoscar, DeleteSocar, UpdateSocar, ...;
+import CreateSocar, DeleteSocar, UpdateSocar, ...;
 message Log {
   Type type = 1;
   google.protobuf.Timestamp timestamp = 99;
@@ -363,7 +365,7 @@ message Log {
 
 **Kafka 토픽당 스키마는 1대1 대응**이기에, 수백개의 로그 종류별로 토픽을 생성하여 관리하기에는 오버엔지니어링이라 판단했습니다. 우회책으로 Protobuf 의 `oneof` 기능을 이용해서 **1개의 Protobuf 스키마로 n개의 Protobuf 스키마**를 검증할 수 있게 해주었습니다. (로그타입을 유저, 운전, 예약 등 대분류로 나누어서 토픽의 개수를 최소화 할 수 있었습니다).
 
-CreateSocar 로그를 생성하거나 DeleteSocar 로그를 생성하거나 상관없이 위 ‘Log’ Protobuf 스키마를 사용해서 로그를 생성하면 됩니다 (물론 CreateSoscar 로그를 생성하려면 CreateSoscar 스키마에 맞는 데이터를 만들어줘야 합니다). 위 스키마를 사용하여 CREATE_SOCAR 혹은 DELETE_SOCAR 라는 type의 로그를 생성했을 때 기대했던 로그 파일 결과물은 아래와 같습니다.
+CreateSocar 로그를 생성하거나 DeleteSocar 로그를 생성하거나 상관없이 위 ‘Log’ Protobuf 스키마를 사용해서 로그를 생성하면 됩니다 (물론 CreateSocar 로그를 생성하려면 CreateSocar 스키마에 맞는 데이터를 만들어줘야 합니다). 위 스키마를 사용하여 CREATE_SOCAR 혹은 DELETE_SOCAR 라는 type의 로그를 생성했을 때 기대했던 로그 파일 결과물은 아래와 같습니다.
 
 ```js
 {
